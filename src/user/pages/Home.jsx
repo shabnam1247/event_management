@@ -1,9 +1,12 @@
 import React from 'react'
+import TopSection from '../components/Home/TopSection'
+import Header from '../components/Header'
 
 function Home() {
   return (
     <div>
-      <h1>home</h1>
+      <Header></Header>
+      <TopSection></TopSection>
     </div>
   )
 }

@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
+import { User, Lock, Calendar, Users, Trophy, GraduationCap } from 'lucide-react';
+import '../components/Login.css';
 
-const CollegeLoginPage = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
     registerNumber: '',
     password: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -25,156 +27,147 @@ const CollegeLoginPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
-    if (!formData.registerNumber.trim()) {
+    if (!formData.registerNumber) {
       newErrors.registerNumber = 'Register number is required';
-    } else if (!/^[A-Za-z0-9]{6,12}$/.test(formData.registerNumber)) {
-      newErrors.registerNumber = 'Register number should be 6-12 characters (letters and numbers only)';
+    } else if (!/^[A-Z0-9]{6,12}$/i.test(formData.registerNumber)) {
+      newErrors.registerNumber = 'Invalid register number format';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Password must be at least 6 characters';
     }
-    
-    return newErrors;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length === 0) {
-      // Handle successful login here
-      console.log('Login attempt:', formData);
-      alert('Login successful! (This is a demo)');
-    } else {
-      setErrors(newErrors);
-    }
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+      alert(`Welcome ${formData.registerNumber}! Login successful.`);
+    }, 2000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 d-flex align-items-center justify-content-center p-4">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-6 col-lg-5 col-xl-4">
-            <div className="card shadow-lg border-0" style={{ borderRadius: '1rem', backdropFilter: 'blur(10px)', backgroundColor: 'rgba(255, 255, 255, 0.95)' }}>
-              <div className="card-body p-5">
-                {/* Header */}
-                <div className="text-center mb-4">
-                  <div className="mb-3">
-                    <div className="d-inline-flex align-items-center justify-content-center bg-primary rounded-circle" style={{ width: '80px', height: '80px' }}>
-                      <i className="fas fa-graduation-cap text-white" style={{ fontSize: '2rem' }}></i>
-                    </div>
-                  </div>
-                  <h2 className="fw-bold text-dark mb-2">Welcome Back</h2>
-                  
-                </div>
+    <div className="login-page">
+      {/* Background */}
+      <div className="background">
+        <div className="icon graduation"><GraduationCap size={60} /></div>
+        <div className="icon calendar"><Calendar size={50} /></div>
+        <div className="icon trophy"><Trophy size={45} /></div>
+        <div className="icon users"><Users size={55} /></div>
 
-                {/* Login Form */}
-                <div onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label htmlFor="registerNumber" className="form-label fw-semibold text-dark">
-                      Register Number
-                    </label>
-                    <div className="input-group">
-                      <span className="input-group-text border-end-0 bg-light">
-                        <i className="fas fa-id-card text-muted"></i>
-                      </span>
-                      <input
-                        type="text"
-                        className={`form-control border-start-0 ${errors.registerNumber ? 'is-invalid' : ''}`}
-                        id="registerNumber"
-                        name="registerNumber"
-                        value={formData.registerNumber}
-                        onChange={handleChange}
-                        placeholder="Enter your register number"
-                        style={{ paddingLeft: '0.5rem' }}
-                      />
-                    </div>
-                    {errors.registerNumber && (
-                      <div className="invalid-feedback d-block">
-                        {errors.registerNumber}
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="mb-4">
-                    <label htmlFor="password" className="form-label fw-semibold text-dark">
-                      Password
-                    </label>
-                    <div className="input-group">
-                      <span className="input-group-text border-end-0 bg-light">
-                        <i className="fas fa-lock text-muted"></i>
-                      </span>
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        className={`form-control border-start-0 border-end-0 ${errors.password ? 'is-invalid' : ''}`}
-                        id="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter your password"
-                        style={{ paddingLeft: '0.5rem' }}
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-outline-secondary border-start-0"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        <i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
-                      </button>
-                    </div>
-                    {errors.password && (
-                      <div className="invalid-feedback d-block">
-                        {errors.password}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Remember Me & Forgot Password */}
-                  <div className="d-flex justify-content-between align-items-center mb-4">
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id="rememberMe" />
-                      <label className="form-check-label text-muted" htmlFor="rememberMe">
-                        Remember me
-                      </label>
-                    </div>
-                    <a href="#" className="text-decoration-none text-primary small">
-                      Forgot Password?
-                    </a>
-                  </div>
-
-                  {/* Login Button */}
-                  <button
-                    onClick={handleSubmit}
-                    className="btn btn-primary w-100 py-2 fw-semibold mb-3"
-                    style={{ borderRadius: '0.5rem' }}
-                  >
-                    Sign In
-                  </button>
-
-                  {/* Additional Options */}
-                  
-                </div>
-
-                {/* Footer */}
-                <div className="text-center mt-4 pt-3 border-top">
-                  <small className="text-muted">
-                    © 2025 College Event Management System
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div className="circle"></div>
+        <div className="square"></div>
+        <div className="dot"></div>
+        <div className="grid-overlay"></div>
       </div>
 
-  
-     
+      {/* Main */}
+      <div className="container">
+        <div className="header fade-in">
+          <div className="logo">
+            <Calendar className="logo-icon" />
+          </div>
+          <h1>Event Portal</h1>
+          <p className="subtitle">College Event Management System</p>
+          <p className="desc">Sign in to manage and participate in events</p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="form slide-up">
+          {/* Register Number */}
+          <div className="form-group">
+            <label htmlFor="registerNumber">Register Number</label>
+            <div className="input-wrapper">
+              <User className="input-icon" />
+              <input
+                type="text"
+                id="registerNumber"
+                name="registerNumber"
+                value={formData.registerNumber}
+                onChange={handleInputChange}
+                placeholder="Enter your register number"
+                className={errors.registerNumber ? 'error' : ''}
+              />
+            </div>
+            {errors.registerNumber && (
+              <p className="error-text shake">{errors.registerNumber}</p>
+            )}
+          </div>
+
+          {/* Password */}
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <div className="input-wrapper">
+              <Lock className="input-icon" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+                placeholder="Enter your password"
+                className={errors.password ? 'error' : ''}
+              />
+            </div>
+            {errors.password && (
+              <p className="error-text shake">{errors.password}</p>
+            )}
+          </div>
+
+          {/* Button */}
+          <button type="submit" disabled={isLoading} className="btn">
+            {isLoading ? (
+              <div className="loading">
+                <div className="spinner"></div>
+                Signing In...
+              </div>
+            ) : (
+              'Sign In to Portal'
+            )}
+          </button>
+        </form>
+
+        {/* Extra */}
+        <div className="extras">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              alert('Password reset functionality would be implemented here');
+            }}
+          >
+            Forgot your password?
+          </a>
+          <p>
+            New student? Contact your{' '}
+            <button
+              type="button"
+              onClick={() => alert('Contact admin for new registration')}
+              className="link-btn"
+            >
+              system administrator
+            </button>{' '}
+            for account creation
+          </p>
+        </div>
+
+        {/* Footer */}
+        <div className="footer">
+          <p>© 2025 College Event Management System</p>
+          <p>Secure • Reliable • User-Friendly</p>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default CollegeLoginPage;
+export default Login;
