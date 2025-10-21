@@ -1,0 +1,151 @@
+.event-page {
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  background-color: #f9f9f9;
+}
+
+/* ---------- Hero Section ---------- */
+.event-hero {
+  position: relative;
+  height: 65vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-hero .overlay {
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  width: 100%;
+}
+
+.event-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.event-info {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.register-btn {
+  background: #ff9800;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-btn:hover {
+  background: #e68900;
+}
+
+/* ---------- Details Section ---------- */
+.event-details {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.event-section {
+  margin-bottom: 3rem;
+}
+
+.event-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.event-section p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ---------- Speakers ---------- */
+.speakers-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.speaker-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  text-align: center;
+  width: 230px;
+  transition: 0.3s;
+}
+
+.speaker-card:hover {
+  transform: translateY(-5px);
+}
+
+.speaker-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Schedule ---------- */
+.schedule-list {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.schedule-item .time {
+  font-weight: 600;
+  color: #ff9800;
+}
+
+.schedule-item .activity {
+  color: #333;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 2rem;
+  }
+
+  .speakers-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .speaker-card {
+    width: 80%;
+  }
+
+  .event-hero {
+    height: 50vh;
+  }
+}
