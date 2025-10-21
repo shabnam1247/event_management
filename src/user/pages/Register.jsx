@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../user/components/Register.css"
+import "../../user/components/Register.css";
 
 const EventRegistration = () => {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -59,7 +59,9 @@ const EventRegistration = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="firstName">First Name <span className="required">*</span></label>
+              <label htmlFor="firstName">
+                First Name <span className="required">*</span>
+              </label>
               <input
                 type="text"
                 id="firstName"
@@ -70,8 +72,11 @@ const EventRegistration = () => {
                 onChange={handleChange}
               />
             </div>
+
             <div className="form-group">
-              <label htmlFor="lastName">Last Name <span className="required">*</span></label>
+              <label htmlFor="lastName">
+                Last Name <span className="required">*</span>
+              </label>
               <input
                 type="text"
                 id="lastName"
@@ -85,7 +90,9 @@ const EventRegistration = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email Address <span className="required">*</span></label>
+            <label htmlFor="email">
+              Email Address <span className="required">*</span>
+            </label>
             <input
               type="email"
               id="email"
@@ -98,7 +105,9 @@ const EventRegistration = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone Number <span className="required">*</span></label>
+            <label htmlFor="phone">
+              Phone Number <span className="required">*</span>
+            </label>
             <input
               type="tel"
               id="phone"
@@ -112,7 +121,9 @@ const EventRegistration = () => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="department">Department <span className="required">*</span></label>
+              <label htmlFor="department">
+                Department <span className="required">*</span>
+              </label>
               <select
                 id="department"
                 name="department"
@@ -128,12 +139,14 @@ const EventRegistration = () => {
                 <option value="GEO">Geography</option>
                 <option value="PSY">Psychology</option>
                 <option value="MB">Microbiology</option>
-                <option value="IS">Islamic studies</option>
+                <option value="IS">Islamic Studies</option>
               </select>
             </div>
 
             <div className="form-group">
-              <label htmlFor="year">Year <span className="required">*</span></label>
+              <label htmlFor="year">
+                Year <span className="required">*</span>
+              </label>
               <select
                 id="year"
                 name="year"
@@ -151,7 +164,9 @@ const EventRegistration = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="event">Select Event <span className="required">*</span></label>
+            <label htmlFor="event">
+              Select Event <span className="required">*</span>
+            </label>
             <select
               id="event"
               name="event"
@@ -193,10 +208,15 @@ const EventRegistration = () => {
               checked={formData.terms}
               onChange={handleChange}
             />
-            <label htmlFor="terms">I agree to the terms and conditions <span className="required">*</span></label>
+            <label htmlFor="terms">
+              I agree to the terms and conditions{" "}
+              <span className="required">*</span>
+            </label>
           </div>
 
-          <button type="submit" className="submit-btn">Register Now</button>
+          <button type="submit" className="submit-btn">
+            Register Now
+          </button>
         </form>
 
         <a href="#" className="back-link" onClick={() => window.history.back()}>

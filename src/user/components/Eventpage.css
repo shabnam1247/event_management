@@ -1,0 +1,69 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f9fafb;
+  margin: 0;
+  padding: 0;
+}
+
+.event-container {
+  max-width: 900px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.event-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #0b132b;
+  margin-bottom: 40px;
+}
+
+.event-card {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: left;
+}
+
+.event-image {
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+}
+
+.event-info {
+  flex: 1;
+  padding: 30px;
+}
+
+.event-info h2 {
+  font-size: 1.4rem;
+  color: #1b263b;
+}
+
+.time,
+.location,
+.description {
+  margin: 8px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.register-btn {
+  margin-top: 20px;
+  background-color: #1e3a8a;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #1d4ed8;
+}
